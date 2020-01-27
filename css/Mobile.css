@@ -5,6 +5,7 @@ to remove the floating elements so that the sidebar falls beneath the main
 content. That way, the reader won’t have to scroll sideways on the device.
 This is a dead-simple responsive design solution.
  */
+
 body {
     width: 480px;
 }
