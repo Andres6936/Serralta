@@ -12,6 +12,23 @@ p, li {
     line-height: 20px;
 }
 
+blockquote {
+    line-height: 20px;
+    font-style: italic;
+    font-size: small;
+    /* For avoid an overflow with the cite and next text */
+    margin-bottom: 2em;
+}
+
+blockquote cite {
+    /* We need that the cite be relative at blockquote */
+    position: relative;
+    /* We are trying align-text to right  */
+    right: -35%;
+    /* For avoid an overflow with the text of blockquote */
+    bottom: -8px;
+}
+
 #page-header {
     width: 100%;
 }
