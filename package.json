@@ -1,0 +1,22 @@
+{
+  "name": "serralta",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@master/css": "^1.37.8",
+    "@master/normal.css": "^3.1.0",
+    "astro": "^4.11.0"
+  }
+}
