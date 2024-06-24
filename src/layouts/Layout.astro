@@ -1,5 +1,6 @@
 ---
 import '@master/normal.css'
+import '../global.css'
 import Footer from "../components/Footer.astro";
 
 const {lang} = Astro.props;
@@ -105,7 +106,7 @@ function getTitle() {
     </div>
 </nav>
 
-<section class="max-w:md@lg max-w:lg@xl mx:auto py:4rem px:2rem">
+<section class="max-w:md@lg max-w:lg@xl mx:auto py:4rem px:2rem font-size:18px">
     <slot/>
 </section>
 

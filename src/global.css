@@ -1,0 +1,15 @@
+@import url(https://fonts.bunny.net/css);
+
+* {
+    font-family: "Public Sans", sans-serif;
+}
+
+p {
+    text-rendering: optimizeLegibility;
+    padding-bottom: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-rendering: optimizeLegibility;
+    font-family: "Merriweather", serif;
+}
