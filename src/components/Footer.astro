@@ -1,34 +1,22 @@
 ---
 const {lang} = Astro.props;
 ---
-<footer class="bg:gray-40 color:white" id="page-footer" role="contentinfo">
-    <div class="grid-container usa-footer__return-to-top">
-        <a href="#">{lang == 'es' ? 'Regresar al inicio' : 'Return to top'}</a>
-    </div>
-    <div class="usa-footer__primary-section">
-        <nav class="usa-footer__nav" role="navigation">
-            <ul class="grid-row grid-gap">
-                <li class="mobile-lg:grid-col-4 desktop:grid-col-auto
-                 usa-footer__primary-content">
-                    <a class="usa-footer__primary-link" href="#">{lang == 'es' ? 'Home' : 'Inicio'}</a></li>
-                <li class="mobile-lg:grid-col-4 desktop:grid-col-auto
-                 usa-footer__primary-content">
-                    <a class="usa-footer__primary-link" href="#">{lang == 'es' ? 'About' : 'Acerca'}</a></li>
-                <li class="mobile-lg:grid-col-4 desktop:grid-col-auto
-                 usa-footer__primary-content">
-                    <a class="usa-footer__primary-link" href="#">{lang == 'es' ? 'Privacy' : 'Privacidad'}</a></li>
-            </ul>
-        </nav>
-    </div>
+<footer class="bg:gray-40 color:white flex flex:row px:2rem py:0.2rem" id="page-footer" role="contentinfo">
+    <ul class="flex flex:1 flex:row justify-content:space-between align-items:center">
+        <a href="/">{lang == 'es' ? 'Regresar al inicio' : 'Return to top'}</a>
+        <a href="/">{lang == 'es' ? 'Home' : 'Inicio'}</a>
+        <a href="/">{lang == 'es' ? 'About' : 'Acerca'}</a>
+        <a href="/">{lang == 'es' ? 'Privacy' : 'Privacidad'}</a>
+    </ul>
 </footer>
 
-<section class="usa-banner bg:#CCC px:1rem py:0.2rem">
-    <p class="usa-banner__header-text">Copyright &copy; (2020) R. L. Serralta Nogués</p>
-    <p>Rev. Ramón Alemón , Oklahoma, U.S.A.</p>
-    <p>Cubierta artística por: Adolfo Serralta.</p>
-    <p>Para contactar con el autor: R. L. Serralta Nogués</p>
-    <p>Teléfono: (305) 951-7435</p>
-    <p>P.O. Box 655126</p>
-    <p>Miami , FL 33265-5126</p>
-    <p>Email: rlserralta@netzero.net</p>
+<section class="bg:#CCC flex flex:col px:2rem py:2rem">
+    <p class="m:0 p:0">Rev. Ramón Alemón , Oklahoma, U.S.A.</p>
+    <p class="m:0 p:0">Cubierta artística por: Adolfo Serralta.</p>
+    <p class="m:0 p:0">Para contactar con el autor: R. L. Serralta Nogués</p>
+    <p class="m:0 p:0">Teléfono: (305) 951-7435</p>
+    <p class="m:0 p:0">P.O. Box 655126</p>
+    <p class="m:0 p:0">Miami , FL 33265-5126</p>
+    <p class="m:0 p:0">Email: rlserralta@netzero.net</p>
+    <p class="m:0 p:0">Copyright &copy; (2020) R. L. Serralta Nogués</p>
 </section>
