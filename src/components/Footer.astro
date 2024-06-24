@@ -1,13 +1,12 @@
 ---
 const {lang} = Astro.props;
 ---
-<footer class="bg:gray-40 color:white flex flex:row px:2rem py:0.2rem" id="page-footer" role="contentinfo">
-    <ul class="flex flex:1 flex:row justify-content:space-between align-items:center">
-        <a href="/">{lang == 'es' ? 'Regresar al inicio' : 'Return to top'}</a>
-        <a href="/">{lang == 'es' ? 'Home' : 'Inicio'}</a>
-        <a href="/">{lang == 'es' ? 'About' : 'Acerca'}</a>
-        <a href="/">{lang == 'es' ? 'Privacy' : 'Privacidad'}</a>
-    </ul>
+<footer class="bg:gray-40 color:white flex flex:1 justify-content:space-between align-items:center flex:row px:2rem py:0.2rem"
+        id="page-footer" role="contentinfo">
+    <a href="/">{lang == 'es' ? 'Regresar al inicio' : 'Return to top'}</a>
+    <a href="/">{lang == 'es' ? 'Home' : 'Inicio'}</a>
+    <a href="/">{lang == 'es' ? 'About' : 'Acerca'}</a>
+    <a href="/">{lang == 'es' ? 'Privacy' : 'Privacidad'}</a>
 </footer>
 
 <section class="bg:#CCC flex flex:col px:2rem py:2rem">
