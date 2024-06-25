@@ -1,6 +1,5 @@
 {
   "name": "serralta",
-  "module": "index.ts",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
