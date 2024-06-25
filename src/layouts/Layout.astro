@@ -4,9 +4,15 @@ import '../global.css'
 import Footer from "../components/Footer.astro";
 import Navigator from "../components/Navigator.astro";
 
-const {lang} = Astro.props;
+type Props = {
+    lang: "es" | "en",
+    title: string,
+}
+
+const {lang, title} = Astro.props as Props;
 
 function getTitle() {
+    if (title) return title;
     return lang === "es" ? "Las últimas cuatro potencias mundiales" : "The Last Four World Powers";
 }
 ---
