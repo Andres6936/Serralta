@@ -1,0 +1,10 @@
+---
+import TitleMain from "./TitleMain.astro";
+import TitleSecondary from "./TitleSecondary.astro";
+
+const {title, secondary} = Astro.props;
+---
+<header class="font:bold pt:1rem pb:2rem">
+    <TitleMain>{title}</TitleMain>
+    <TitleSecondary>{secondary}</TitleSecondary>
+</header>

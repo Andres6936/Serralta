@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import HeaderLayout from "../../components/HeaderLayout.astro";
 ---
 <Layout lang="es">
     <!-- Header and Navigation -->
@@ -93,10 +94,10 @@ import Layout from "../../layouts/Layout.astro";
     <section class="usa-section" id="posts" role="main">
         <div class="grid-container">
 
-            <header class="font:bold pt:1rem pb:2rem">
-                <h1 class="font-size:3rem mb:1.5rem lh:0.8">Las últimas cuatro potencias mundiales</h1>
-                <h4 class="font-size:2rem lh:1">¿Cómo sabremos cuando el regreso de Jesucristo está a punto de ocurrir?</h4>
-            </header>
+            <HeaderLayout
+                    title="Las últimas cuatro potencias mundiales"
+                    secondary="¿Cómo sabremos cuando el regreso de Jesucristo está a punto de ocurrir?"
+            />
 
             <main class="grid-row grid-gap">
                 <article class="usa-layout-docs__main usa-prose usa-layout-docs font-family-sans">
