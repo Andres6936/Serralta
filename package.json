@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@master/css": "^1.37.8",
     "astro": "^4.14.2"
   },
   "devDependencies": {
