@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layout/Layout.astro";
+import Article from "../components/Article.astro";
 ---
 <Layout title="Notas Biblicas">
     <section class="flex gap:5rem my:2rem">
@@ -30,20 +31,7 @@ import Layout from "@/layout/Layout.astro";
         </article>
 
         <article>
-            <div>
-                <time class="font-size:1rem">1 Mz 2000</time>
-                <h2 class="font-size:3rem font-weight:500 text-wrap:balance line-height:1.25 m:0 pt:0.25rem">
-                    <a class="text-decoration-line:none">Es falso asegurar que Cristo no nació en diciembre</a>
-                </h2>
-                <a class="font-size:1rem line-height:0.65 bg:hsl(39|93%|90%/1) color:hsl(19.89deg|52.75%|47.03%) text-decoration-color:rgb(241,114,51) text-decoration:underline">Categoría</a>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s.
-                    <br/>
-                    <a class="color:currentColor text-decoration-color:rgb(241,114,51)"
-                       href="Cristonaciodiciembre.html">Read More</a>
-                </p>
-            </div>
+            <Article title="Es falso asegurar que Cristo no nació en diciembre" dateOf="1 Mz 2000"/>
 
 
             <p><a href="LongevidadAnos.html">2- La longevidad de los patriarcas está dada en años, no en meses.</a> ( 14
