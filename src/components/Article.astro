@@ -1,5 +1,5 @@
 ---
-const {title, dateOf} = Astro.props;
+const {title, dateOf, href} = Astro.props;
 ---
 <div>
     <time class="font-size:1rem">{dateOf}</time>
@@ -12,6 +12,6 @@ const {title, dateOf} = Astro.props;
         industry's standard dummy text ever since the 1500s.
         <br/>
         <a class="color:currentColor text-decoration-color:rgb(241,114,51)"
-           href="Cristonaciodiciembre.html">Read More</a>
+           href={`${href}`}>Read More</a>
     </p>
 </div>
