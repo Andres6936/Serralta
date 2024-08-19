@@ -5,8 +5,11 @@ const {title, dateOf, href, numberOf} = Astro.props;
 ---
 <div class="pb:5rem">
     <time class="font-size:1rem">{dateOf}</time>
-    <h2 class="font-size:3rem font-weight:500 text-wrap:balance line-height:1.25 m:0 pt:0.25rem">
-        <a class="text-decoration-line:none">{title}</a>
+    <h2 class="m:0">
+        <a href={`${href}`}
+           class="font-size:3rem font-weight:500 text-wrap:balance line-height:1.25 m:0 pt:0.25rem text-decoration:none color:#352621">
+            {title}
+        </a>
     </h2>
     <div class="flex flex:row gap:0.5rem pt:1rem">
         <Tag>Categoría</Tag>
@@ -17,6 +20,6 @@ const {title, dateOf, href, numberOf} = Astro.props;
         industry's standard dummy text ever since the 1500s.
         <br/>
         <a class="color:currentColor text-decoration-color:rgb(241,114,51)"
-           href={`${href}`}>Read More</a>
+           href={`${href}`}>Leer más</a>
     </p>
 </div>
