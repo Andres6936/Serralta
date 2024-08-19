@@ -1,10 +1,18 @@
 ---
 import Layout from "../layout/Layout.astro";
+import Title from "../components/Title.astro";
+import DateOf from "../components/DateOf.astro";
+import Tag from "../components/Tag.astro";
 ---
 
 <Layout title="Cristo pudo haber nacido en diciembre">
-    <section>
-<p><strong>Los que dicen que Cristo no pudo haber nacido en diciembre, mienten.</strong></p>
+    <DateOf>1 Mz 2000</DateOf>
+    <Title>Los que dicen que Cristo no pudo haber nacido en diciembre, mienten.</Title>
+    <div class="flex justify-content:center mb:5rem">
+        <Tag>#1</Tag>
+    </div>
+
+    <section class="mx:auto max-w:sm mb:5rem">
         <p> Algunos verdaderos cristianos se han tragado esa mentira y andan regándola por el mundo. Veamos las
             pruebas.</p>
         <p><strong>Los ruselistas ( llamados equivocadamente Testigos de Jehová, puesto que no lo son),</strong>
@@ -138,6 +146,5 @@ import Layout from "../layout/Layout.astro";
         cristianismo.</strong> La prueba que los ruselistas tratan de martillar en las mentes de muchos cristianos,
     <strong>no es una prueba, es simplemente una mentira.</strong></p>
         <p><strong>¡Una gran Mentira!</strong></p>
-<p><a href="NotasBiblicas.html">Volver al indice</a></p>
     </section>
 </Layout>
