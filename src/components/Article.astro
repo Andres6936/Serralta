@@ -1,12 +1,15 @@
 ---
-const {title, dateOf, href} = Astro.props;
+const {title, dateOf, href, numberOf} = Astro.props;
 ---
 <div class="pb:5rem">
     <time class="font-size:1rem">{dateOf}</time>
     <h2 class="font-size:3rem font-weight:500 text-wrap:balance line-height:1.25 m:0 pt:0.25rem">
         <a class="text-decoration-line:none">{title}</a>
     </h2>
-    <a class="font-size:1rem line-height:0.65 bg:hsl(39|93%|90%/1) color:hsl(19.89deg|52.75%|47.03%) text-decoration-color:rgb(241,114,51) text-decoration:underline">Categoría</a>
+    <div>
+        <a class="font-size:1rem line-height:0.65 bg:hsl(39|93%|90%/1) color:hsl(19.89deg|52.75%|47.03%) text-decoration-color:rgb(241,114,51) text-decoration:underline">Categoría</a>
+        <a class="font-size:1rem line-height:0.65 bg:hsl(39|93%|90%/1) color:hsl(19.89deg|52.75%|47.03%) text-decoration-color:rgb(241,114,51) text-decoration:underline">{numberOf}</a>
+    </div>
     <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
         industry's standard dummy text ever since the 1500s.
