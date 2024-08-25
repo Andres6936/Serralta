@@ -1,21 +1,19 @@
 {
   "name": "serralta",
   "type": "module",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "@master/css": "^1.37.8",
+    "astro": "^4.14.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@master/css": "^1.37.8",
-    "@master/normal.css": "^3.1.0",
-    "astro": "^4.11.0"
   }
 }
