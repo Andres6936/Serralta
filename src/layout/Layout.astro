@@ -1,5 +1,7 @@
 ---
-import ThanksRead from "../components/ThanksRead.astro";
+import ThanksRead from "@/components/ThanksRead.astro";
+import NavigatorBottom from "@/components/NavigatorBottom.astro";
+import NavigatorTop from "@/components/NavigatorTop.astro";
 const {title, showThanksRead = true} = Astro.props;
 ---
 
@@ -174,36 +176,13 @@ const {title, showThanksRead = true} = Astro.props;
     </style>
 </head>
 <body class="min-h:100vh background-color:hsl(39|93%|99%/1) color:#352621">
-<header class="flex flex:row justify-content:space-between p:2rem mb:6rem">
-    <a href="/" class="text-decoration:none color:currentColor">
-        <h1 class="font-size:2rem font-weight:400">Bibleserralta.com</h1>
-    </a>
 
-    <nav class="flex flex:row gap:1rem">
-        <a href="/"
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Libros</a>
-        <a href="/" class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Notas</a>
-        <a href="/"
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Language</a>
-    </nav>
-</header>
-
+<NavigatorTop/>
 <main class="mx:auto px:2rem max-w:lg@xl max-w:md@2xl">
     <slot/>
 </main>
-
 <ThanksRead/>
+<NavigatorBottom/>
 
-<header class="flex align-items:center justify-content:center mb:3rem">
-    <nav class="flex flex:row gap:1rem">
-        <a href="/"
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Bibleserralta.com</a>
-        <a href="/"
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Libros</a>
-        <a href="/" class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Notas</a>
-        <a href="/"
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Language</a>
-    </nav>
-</header>
 </body>
 </html>
