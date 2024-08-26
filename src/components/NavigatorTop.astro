@@ -1,7 +1,28 @@
 ---
-const {equivalentHref} = Astro.props;
+const {language, equivalentHref} = Astro.props;
 
 const showEquivalentHref = !!equivalentHref;
+const languageOf = {
+    en: {
+        books: 'Books',
+        notes: 'Notes',
+        lang: 'Language',
+    },
+    es: {
+        books: 'Libros',
+        notes: 'Notas',
+        lang: 'Idioma',
+    }
+} as const;
+
+const urlOf = {
+    en: {
+        notes: '/biblenotes'
+    },
+    es: {
+        notes: '/NotasBiblicas'
+    }
+} as const;
 ---
 <header class="flex flex:row justify-content:space-between align-items:center p:2rem mb:6rem">
     <a href="/" class="text-decoration:none color:currentColor">
@@ -11,15 +32,15 @@ const showEquivalentHref = !!equivalentHref;
     <nav class="flex flex:row gap:1rem">
         <a href="/"
            class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
-            Libros
+            {languageOf[language]['books']}
         </a>
-        <a href="/"
+        <a href={urlOf[language]['notes']}
            class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
-            Notas
+            {languageOf[language]['notes']}
         </a>
         <a href={equivalentHref}
            class={`${showEquivalentHref ? 'flex' : 'hidden'} color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline`}>
-            Idioma
+            {languageOf[language]['lang']}
         </a>
     </nav>
 </header>
