@@ -1,10 +1,12 @@
 ---
 import Layout from "@/layout/Layout.astro";
+import SectionOf from "@/components/SectionOf.astro";
+import Column from "../components/Column.astro";
 ---
 <Layout showThanksRead={false}
         title="R. L. Serralta Nogués - Daniel 7 How will we know when the return of Jesus Christ is about to occur?">
-    <section class="flex gap:5rem my:2rem">
-        <article class="w:17rem max-w:17rem">
+    <SectionOf>
+        <Column>
             <div class="bg:hsl(39|93%|90%/1) p:2rem font-size:1rem">
                 <p>
                     <a href="/img_menu.nvm.html">
@@ -26,7 +28,7 @@ import Layout from "@/layout/Layout.astro";
                     install.</strong>
                 </p>
             </div>
-        </article>
+        </Column>
 
         <article>
             <table>
@@ -462,5 +464,5 @@ import Layout from "@/layout/Layout.astro";
                 </tr>
             </table>
         </article>
-    </section>
+    </SectionOf>
 </Layout>

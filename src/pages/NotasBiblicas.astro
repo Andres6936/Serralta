@@ -1,10 +1,12 @@
 ---
 import Layout from "@/layout/Layout.astro";
 import Article from "../components/Article.astro";
+import SectionOf from "../components/SectionOf.astro";
+import Column from "../components/Column.astro";
 ---
 <Layout showThanksRead={false} title="Notas Biblicas">
-    <section class="flex gap:5rem my:2rem">
-        <article class="w:17rem max-w:17rem">
+    <SectionOf>
+        <Column>
             <div class="bg:hsl(39|93%|90%/1) p:2rem font-size:1rem">
                 <p><strong>Índice de Notas Bíblicas en Español</strong></p>
 
@@ -28,7 +30,7 @@ import Article from "../components/Article.astro";
                     déjeme un
                     mensaje en el E-Mail: ramonaleman@yahoo.com dirigido a R. L. Serralta Nogués.</p>
             </div>
-        </article>
+        </Column>
 
         <article>
             <Article title="Es falso asegurar que Cristo no nació en diciembre" dateOf="1 Mz 2000"
@@ -347,5 +349,5 @@ import Article from "../components/Article.astro";
             <Article numberOf="151" title="Discutir nuestras doctrinas está bíblicamente autorizado" dateOf="27 Fb 13"
                      href="DiscutirEsBiblico"/>
         </article>
-    </section>
+    </SectionOf>
 </Layout>
