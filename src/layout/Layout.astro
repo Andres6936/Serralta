@@ -2,7 +2,8 @@
 import ThanksRead from "@/components/ThanksRead.astro";
 import NavigatorBottom from "@/components/NavigatorBottom.astro";
 import NavigatorTop from "@/components/NavigatorTop.astro";
-const {title, showThanksRead = true} = Astro.props;
+
+const {title, equivalentHref, showThanksRead = true} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -177,7 +178,7 @@ const {title, showThanksRead = true} = Astro.props;
 </head>
 <body class="min-h:100vh background-color:hsl(39|93%|99%/1) color:#352621">
 
-<NavigatorTop/>
+<NavigatorTop {equivalentHref}/>
 <main class="mx:auto px:2rem max-w:lg@xl max-w:md@2xl">
     <slot/>
 </main>
