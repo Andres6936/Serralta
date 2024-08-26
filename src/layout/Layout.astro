@@ -183,7 +183,7 @@ const {title, equivalentHref, showThanksRead = true} = Astro.props;
     <slot/>
 </main>
 <ThanksRead show={showThanksRead}/>
-<NavigatorBottom/>
+<NavigatorBottom {equivalentHref}/>
 
 </body>
 </html>

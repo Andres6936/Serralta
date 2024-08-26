@@ -1,15 +1,25 @@
 ---
+const {equivalentHref} = Astro.props;
 
+const showEquivalentHref = !!equivalentHref;
 ---
 <header class="flex align-items:center justify-content:center mb:3rem">
     <nav class="flex flex:row gap:1rem">
         <a href="/"
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Bibleserralta.com</a>
+           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
+            Bibleserralta.com
+        </a>
         <a href="/"
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Libros</a>
+           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
+            Libros
+        </a>
         <a href="/"
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Notas</a>
-        <a href="/"
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">Idioma</a>
+           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
+            Notas
+        </a>
+        <a href={equivalentHref}
+           class={`${showEquivalentHref ? 'flex' : 'hidden'} color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline`}>
+            Idioma
+        </a>
     </nav>
 </header>
