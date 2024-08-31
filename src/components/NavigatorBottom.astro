@@ -1,8 +1,6 @@
 ---
-import * as url from "node:url";
+import {usePath} from "@/hooks/usePath";
 const {language, equivalentHref} = Astro.props;
-
-const base = import.meta.env.BASE_URL;
 
 const showEquivalentHref = !!equivalentHref;
 const languageOf = {
@@ -20,14 +18,14 @@ const languageOf = {
 
 const urlOf = {
     en: {
-        home: `${base}`,
-        books: `${base}`,
-        notes: `${base}biblenotes`
+        home: usePath("/"),
+        books: usePath("/"),
+        notes: usePath("/biblenotes"),
     },
     es: {
-        home: `${base}es`,
-        books: `${base}es/books`,
-        notes: `${base}NotasBiblicas`
+        home: usePath("/es"),
+        books: usePath("/es/books"),
+        notes: usePath("/NotasBiblicas"),
     }
 } as const;
 ---
@@ -45,7 +43,7 @@ const urlOf = {
            class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
             {languageOf[language]['notes']}
         </a>
-        <a href={equivalentHref}
+        <a href={usePath(equivalentHref)}
            class={`${showEquivalentHref ? 'flex' : 'hidden'} color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline`}>
             {languageOf[language]['lang']}
         </a>
