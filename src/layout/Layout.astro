@@ -182,7 +182,7 @@ const {title, equivalentHref, language = 'en', showThanksRead = true} = Astro.pr
 <main class="mx:auto px:2rem max-w:lg@xl max-w:md@2xl">
     <slot/>
 </main>
-<ThanksRead show={showThanksRead}/>
+<ThanksRead {language} show={showThanksRead}/>
 <NavigatorBottom {...{language, equivalentHref}}/>
 
 </body>

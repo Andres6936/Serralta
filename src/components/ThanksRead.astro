@@ -1,15 +1,35 @@
 ---
-const {show} = Astro.props;
+const {language, show} = Astro.props;
+
+const languageOf = {
+    en: {
+        thanks: 'Thanks for reading',
+        mailto: "Email me your thoughts at",
+        author: "Author",
+        send: "send a write to",
+        phone: "or phone",
+    },
+    es: {
+        thanks: 'Gracias por leer',
+        mailto: "Envíeme un correo electrónico con sus comentarios a",
+        author: "Autor",
+        send: "envíe un correo a",
+        phone: "o llame al teléfono",
+    }
+} as const;
 ---
 <div class={`${show ? 'flex' : 'hidden'} w:full bg:hsl(39|93%|90%/1) py:4rem mb:5rem`}>
     <div class="mx:auto max-w:xs">
-        <h3 class="font-size:2rem font-weight:500 text-align:center color:hsl(19.89deg|52.75%|47.03%) pb:3rem">Thanks
-            for Reading</h3>
+        <h3 class="font-size:2rem font-weight:500 text-align:center color:hsl(19.89deg|52.75%|47.03%) pb:3rem">
+            {languageOf[language]['thanks']}
+        </h3>
 
         <p class="text-align:center color:hsl(19.89deg|52.75%|47.03%)">
-            Email me your thoughts at <strong>rlserralta@netzero.net</strong>.
+            {languageOf[language]['mailto']} <strong>rlserralta@netzero.net</strong>.
             <span class="white-space:nowrap text-decoration-color:rgb(241,114,51) text-decoration:underline">
-                Author R. L. Serralta Nogués
-            </span> send a write to P.O. Box 655126 Miami, FL 33265-5126 or phone: (305) 951-7435</p>
+                {languageOf[language]['author']} R. L. Serralta Nogués
+            </span>, {languageOf[language]['send']} P.O. Box 655126 Miami, FL 33265-5126 {languageOf[language]['phone']}:
+            (305) 951-7435
+        </p>
     </div>
 </div>
