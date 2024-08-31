@@ -1,5 +1,8 @@
 ---
+import * as url from "node:url";
 const {language, equivalentHref} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
 
 const showEquivalentHref = !!equivalentHref;
 const languageOf = {
@@ -17,20 +20,24 @@ const languageOf = {
 
 const urlOf = {
     en: {
-        notes: '/biblenotes'
+        home: `${base}/`,
+        books: `${base}/`,
+        notes: `${base}/biblenotes`
     },
     es: {
-        notes: '/NotasBiblicas'
+        home: `${base}/es`,
+        books: `${base}/es/books`,
+        notes: `${base}/NotasBiblicas`
     }
 } as const;
 ---
 <header class="flex align-items:center justify-content:center mb:3rem">
     <nav class="flex flex:row gap:1rem">
-        <a href="/"
+        <a href={urlOf[language]['home']}
            class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
             Bibleserralta.com
         </a>
-        <a href="/"
+        <a href={urlOf[language]['books']}
            class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
             {languageOf[language]['books']}
         </a>

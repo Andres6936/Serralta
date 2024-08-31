@@ -1,6 +1,8 @@
 ---
 const {language, equivalentHref} = Astro.props;
 
+const base = import.meta.env.BASE_URL;
+
 const showEquivalentHref = !!equivalentHref;
 const languageOf = {
     en: {
@@ -17,14 +19,14 @@ const languageOf = {
 
 const urlOf = {
     en: {
-        home: "/",
-        books: "/",
-        notes: '/biblenotes'
+        home: `${base}/`,
+        books: `${base}/`,
+        notes: `${base}/biblenotes`
     },
     es: {
-        home: "/es",
-        books: "/es/books",
-        notes: '/NotasBiblicas'
+        home: `${base}/es`,
+        books: `${base}/es/books`,
+        notes: `${base}/NotasBiblicas`
     }
 } as const;
 ---
