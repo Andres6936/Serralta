@@ -17,17 +17,19 @@ const languageOf = {
 
 const urlOf = {
     en: {
+        home: "/",
         books: "/",
         notes: '/biblenotes'
     },
     es: {
+        home: "/es",
         books: "/es/books",
         notes: '/NotasBiblicas'
     }
 } as const;
 ---
 <header class="flex flex:row justify-content:space-between align-items:center p:2rem mb:6rem">
-    <a href="/" class="text-decoration:none color:currentColor">
+    <a href={urlOf[language]['home']} class="text-decoration:none color:currentColor">
         <h1 class="font-size:2rem font-weight:400">Bibleserralta.com</h1>
     </a>
 
