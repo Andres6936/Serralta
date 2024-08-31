@@ -1,5 +1,6 @@
 ---
 import Tag from "@/components/Tag.astro";
+import {usePath} from "@/hooks/usePath";
 
 const {title, dateOf, href, numberOf} = Astro.props;
 
@@ -8,7 +9,7 @@ const base = import.meta.env.BASE_URL;
 <div class="pb:5rem">
     <time class="font-size:1rem">{dateOf}</time>
     <h2 class="m:0">
-        <a href={`${base}${href}`}
+        <a href={usePath(href)}
            class="font-size:3rem font-weight:500 text-wrap:balance line-height:1.25 m:0 pt:0.25rem text-decoration:none color:#352621">
             {title}
         </a>
@@ -22,6 +23,6 @@ const base = import.meta.env.BASE_URL;
         industry's standard dummy text ever since the 1500s.
         <br/>
         <a class="color:currentColor text-decoration-color:rgb(241,114,51)"
-           href={`${base}${href}`}>Leer más</a>
+           href={usePath(href)}>Leer más</a>
     </p>
 </div>
