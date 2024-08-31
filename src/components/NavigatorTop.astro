@@ -17,9 +17,11 @@ const languageOf = {
 
 const urlOf = {
     en: {
+        books: "/",
         notes: '/biblenotes'
     },
     es: {
+        books: "/es/books",
         notes: '/NotasBiblicas'
     }
 } as const;
@@ -30,7 +32,7 @@ const urlOf = {
     </a>
 
     <nav class="flex flex:row gap:1rem">
-        <a href="/"
+        <a href={urlOf[language]['books']}
            class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
             {languageOf[language]['books']}
         </a>
