@@ -79,8 +79,6 @@
 }
 
 html {
-    -webkit-text-size-adjust: none;
-    -moz-text-size-adjust: none;
     text-size-adjust: none;
 }
 
@@ -120,7 +118,6 @@ h4 {
 }
 
 a:not([class]) {
-    -webkit-text-decoration-skip: ink;
     text-decoration-skip-ink: auto;
     color: currentColor;
 }
