@@ -4,6 +4,7 @@ import '@/styles/global.css'
 import ThanksRead from "@/components/ThanksRead.astro";
 import NavigatorBottom from "@/components/NavigatorBottom.astro";
 import NavigatorTop from "@/components/NavigatorTop.astro";
+import Container from "@/components/Container.astro";
 
 const {title, equivalentHref, language = 'en', showThanksRead = true} = Astro.props;
 ---
@@ -23,9 +24,9 @@ const {title, equivalentHref, language = 'en', showThanksRead = true} = Astro.pr
 <body class="min-h:100vh background-color:hsl(39|93%|99%/1) color:#352621">
 
 <NavigatorTop {...{equivalentHref, language}}/>
-<main class="mx:auto px:2rem px:0@md max-w:xs@sm max-w:sm@md max-w:md@lg max-w:lg@xl">
+<Container>
     <slot/>
-</main>
+</Container>
 <ThanksRead {language} show={showThanksRead}/>
 <NavigatorBottom {...{language, equivalentHref}}/>
 
