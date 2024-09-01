@@ -32,11 +32,18 @@ const {title, equivalentHref, language = 'en', showThanksRead = true} = Astro.pr
 </body>
 
 <script>
-    const htmlClassList = document.documentElement.classList;
-    // This line is more adequate when the toggle of theme is automatic
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    htmlClassList.toggle('light', !isDark);
-    htmlClassList.toggle('dark', isDark);
+    const applyTheme = (mediaQueryList: MediaQueryList) => {
+        const htmlClassList = document.documentElement.classList;
+        const isDark = mediaQueryList.matches;
+        htmlClassList.toggle('light', !isDark);
+        htmlClassList.toggle('dark', isDark);
+    }
+    const mediaPrefersColorScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    applyTheme(mediaPrefersColorScheme);
+
+    mediaPrefersColorScheme.addEventListener('change', () => {
+        applyTheme(mediaPrefersColorScheme);
+    })
 </script>
 
 </html>
