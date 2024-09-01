@@ -9,7 +9,7 @@ import Container from "@/components/Container.astro";
 const {title, equivalentHref, language = 'en', showThanksRead = true} = Astro.props;
 ---
 
-<html lang={language}>
+<html class="dark" lang={language}>
 <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)"/>
@@ -21,7 +21,7 @@ const {title, equivalentHref, language = 'en', showThanksRead = true} = Astro.pr
         import "@master/css";
     </script>
 </head>
-<body class="min-h:100vh background-color:hsl(39|93%|99%/1) color:#352621">
+<body class="min-h:100vh background-color:hsl(39|93%|99%/1)@light background-color:#49243E@dark color:#352621@light color:#DBAFA0@dark">
 
 <NavigatorTop {...{equivalentHref, language}}/>
 <Container>

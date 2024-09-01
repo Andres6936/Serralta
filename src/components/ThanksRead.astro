@@ -18,13 +18,13 @@ const languageOf = {
     }
 } as const;
 ---
-<div class={`${show ? 'flex' : 'hidden'} w:full bg:hsl(39|93%|90%/1) py:4rem mb:5rem`}>
+<div class={`${show ? 'flex' : 'hidden'} w:full bg:hsl(39|93%|90%/1)@light bg:#704264@dark py:4rem mb:5rem`}>
     <div class="mx:auto max-w:xs">
-        <h3 class="font-size:2rem font-weight:500 text-align:center color:hsl(19.89deg|52.75%|47.03%) pb:3rem">
+        <h3 class="font-size:2rem font-weight:500 text-align:center color:hsl(19.89deg|52.75%|47.03%)@light color:#BB8493@dark pb:3rem">
             {languageOf[language]['thanks']}
         </h3>
 
-        <p class="text-align:center color:hsl(19.89deg|52.75%|47.03%) px:3rem px:0@lg">
+        <p class="text-align:center color:hsl(19.89deg|52.75%|47.03%)@light color:#BB8493@dark px:3rem px:0@lg">
             {languageOf[language]['mailto']} <strong>rlserralta@netzero.net</strong>.
             <span class="white-space:nowrap text-decoration-color:rgb(241,114,51) text-decoration:underline">
                 {languageOf[language]['author']} R. L. Serralta Nogués
