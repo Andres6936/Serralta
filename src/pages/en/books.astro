@@ -3,6 +3,7 @@ import Layout from "@/layout/Layout.astro";
 import SectionOf from "@/components/SectionOf.astro";
 import Brief from "@/components/Brief.astro";
 import Article from "@/components/Article.astro";
+import MainOf from "@/components/MainOf.astro";
 ---
 <Layout showThanksRead equivalentHref="/es/books" language="en"
         title="R. L. Serralta Nogués - Daniel 7 How will we know when the return of Jesus Christ is about to occur?">
@@ -23,7 +24,7 @@ import Article from "@/components/Article.astro";
             <p><strong>Rev. Ramón Alemán, Oklahoma, U.S.A.</strong></p>
         </Brief>
 
-        <article class="pr:5rem">
+        <MainOf>
             <Article title="The Last Four World Powers" href="LastFourWorldPowers.pdf"/>
             <Article title="Rapture vs Ingathering" href="Rapture_vs_Ingathering_english.pdf"/>
             <Article title="Demonstrating that Jesus is the Jewish Messiah"
@@ -36,6 +37,6 @@ import Article from "@/components/Article.astro";
             <Article title="Hermeneutics as Taught in the Bible" href="Hermeneutica_Ingles_19_My_11.pdf"/>
             <Article title="Predestination, Christian Doctrine or Heresy" href="Predestination_Ingles_11_My_11.pdf"/>
             <Article title="The Trinity as Taught in the Bible" href="Trinidad_Ingles_22_My_11.pdf"/>
-        </article>
+        </MainOf>
     </SectionOf>
 </Layout>
