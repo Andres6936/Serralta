@@ -32,14 +32,11 @@ const {title, equivalentHref, language = 'en', showThanksRead = true} = Astro.pr
 </body>
 
 <script>
-    const storageTheme = localStorage.getItem("theme");
     const htmlClassList = document.documentElement.classList;
-    const isDark = storageTheme === "dark" || !storageTheme && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    // This line is more adequate when the toggle of theme is automatic
+    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     htmlClassList.toggle('light', !isDark);
     htmlClassList.toggle('dark', isDark);
-    if (!storageTheme) {
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-    }
 </script>
 
 </html>
