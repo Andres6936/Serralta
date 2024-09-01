@@ -1,5 +1,7 @@
 # TypeScript and Astro Project
 
+![Index](./index.png)
+
 ## Description
 
 This project is an example of a web application based on TypeScript and Astro.
