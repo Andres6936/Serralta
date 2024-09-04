@@ -2,9 +2,10 @@
 import Layout from "@/layout/Layout.astro";
 import Article from "@/components/Article.astro";
 import Brief from "@/components/Brief.astro";
+import SectionOf from "@/components/SectionOf.astro";
 ---
-<Layout title="Bible Notes">
-    <section class="flex gap:5rem my:2rem">
+<Layout title="Bible Notes" language="en" equivalentHref="NotasBiblicas">
+    <SectionOf>
         <Brief>
             <p><strong>Index of Biblical Notes in English</strong></p>
 
@@ -343,5 +344,5 @@ import Brief from "@/components/Brief.astro";
             <Article numberOf="151" title="Discussing our doctrines with others is approved in the Bible."
                      dateOf="27 Fb 13" href="DiscussingDoctrinesBibleApproved"/>
         </article>
-    </section>
+    </SectionOf>
 </Layout>
