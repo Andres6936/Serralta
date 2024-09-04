@@ -68,3 +68,9 @@
 //         await new Promise(resolve => setTimeout(resolve, 3000));
 //     }
 // })()
+
+// import { StyleSheet } from '@master/css';
+// import {render} from "@master/css/render";
+//
+// const css = render(await Bun.file("dist/AbrahamSacrificedIsaac/index.html").text(), {StyleSheet})
+// console.log(css);
