@@ -1,0 +1,8 @@
+---
+const { cite } = Astro.props;
+---
+
+<div class="pl:2.5rem pt:1rem pb:2rem">
+    “<slot />”
+    <span class="flex flex:1 justify-content:end">({cite})</span>
+</div>

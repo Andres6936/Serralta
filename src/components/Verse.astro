@@ -1,0 +1,8 @@
+---
+const { verse } = Astro.props;
+---
+
+<span>
+    {verse && <span class="text:xs fg:red">{verse}</span>}
+    <slot />
+</span>

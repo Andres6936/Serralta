@@ -2,6 +2,8 @@
 import Layout from "../layout/Layout.astro";
 import Title from "../components/Title.astro";
 import DateOf from "../components/DateOf.astro";
+import Cite from "../components/Cite.astro";
+import Verse from "../components/Verse.astro";
 import Tag from "../components/Tag.astro";
 ---
 
@@ -14,7 +16,7 @@ import Tag from "../components/Tag.astro";
         <Tag>#1</Tag>
     </div>
 
-    <section class="mx:auto max-w:sm mb:5rem text:justify text:pretty">
+    <section class="mx:auto max-w:screen-sm mb:5rem text:pretty">
         <p>
             Algunos verdaderos cristianos se han tragado esa mentira y andan
             regándola por el mundo. Veamos las pruebas.
@@ -155,34 +157,45 @@ import Tag from "../components/Tag.astro";
             > Cuando surgió un problema entre Jacob y Esaú su hermano, Rebeca convenció
             a Isaac de que debía enviar a Jacob a Padanaram por un tiempo.
         </p>
-        <p>
-            "<strong
-                >Así envió Isaac a Jacob, el cual fue a Padanaram, a Labán, hijo
-                de Bethuel Arameo, hermano de Rebeca, madre de Jacob y de Esaú</strong
-            >." ( Gn 28: 5)
-        </p>
+
+        <Cite cite="Gn 28:5">
+            <Verse>
+                <strong
+                    >Así envió Isaac a Jacob, el cual fue a Padanaram, a Labán,
+                    hijo de Bethuel Arameo, hermano de Rebeca, madre de Jacob y
+                    de Esaú</strong
+                >.
+            </Verse>
+        </Cite>
+
         <p>
             Jacob estuvo allá durante 20 años cuidando el ganado de Labán.
             Cuando Jacob se iba del lado de su suegro, surgió una discusión
             entre ellos dos, en la que Jacob le echó en cara lo siguiente:
         </p>
-        <p>
-            "<strong>38</strong>
-            <strong
-                >Estos veinte años he estado contigo: tus ovejas y tus cabras
-                nunca abortaron, ni yo comí carnero de tus ovejas.</strong
-            >
-            <strong>39</strong>
-            <strong
-                >Nunca te traje lo arrebatado por las fieras; yo pagaba el daño;
-                lo hurtado así de día como de noche, de mi mano lo requerías.</strong
-            >
-            <strong>40</strong>
-            <strong
-                >De día me consumía el calor, y de noche la helada, y el sueño
-                se huía de mis ojos</strong
-            >." (Gn 31:38- 40)
-        </p>
+
+        <Cite cite="Gn 31:38-40">
+            <Verse verse="38">
+                <strong
+                    >Estos veinte años he estado contigo: tus ovejas y tus
+                    cabras nunca abortaron, ni yo comí carnero de tus ovejas.</strong
+                >
+            </Verse>
+            <Verse verse="39">
+                <strong
+                    >Nunca te traje lo arrebatado por las fieras; yo pagaba el
+                    daño; lo hurtado así de día como de noche, de mi mano lo
+                    requerías.</strong
+                >
+            </Verse>
+            <Verse verse="40">
+                <strong
+                    >De día me consumía el calor, y de noche la helada, y el
+                    sueño se huía de mis ojos</strong
+                >.
+            </Verse>
+        </Cite>
+
         <p>
             El mismo Jacob declara en Gn 31:40, que cuando lo consumía la
             helada, aún así él cuidaba el ganado en el campo. Es decir, que
