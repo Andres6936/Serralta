@@ -4,8 +4,9 @@
   "private": true,
   "version": "1.0.0",
   "dependencies": {
-    "@master/css": "^1.37.8",
-    "astro": "^4.14.5"
+    "@master/css": "^2.0.0-rc.69",
+    "@master/css.astro": "^2.0.0-rc.69",
+    "astro": "6.4.2"
   },
   "devDependencies": {
     "typescript": "^5.5.4"

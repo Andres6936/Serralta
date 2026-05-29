@@ -1,50 +1,64 @@
 ---
-import '@/styles/global.css'
+import "@/styles/global.css";
 
 import ThanksRead from "@/components/ThanksRead.astro";
 import NavigatorBottom from "@/components/NavigatorBottom.astro";
 import NavigatorTop from "@/components/NavigatorTop.astro";
 import Container from "@/components/Container.astro";
-import {usePath} from "../hooks/usePath";
+import { usePath } from "../hooks/usePath";
 
-const {title, equivalentHref, language = 'en', showThanksRead = true} = Astro.props;
+const {
+    title,
+    equivalentHref,
+    language = "en",
+    showThanksRead = true,
+} = Astro.props;
 ---
 
 <html lang={language}>
-<head>
-    <meta charset="utf-8">
-    <link rel="icon" type="image/svg+xml" href={usePath("favicon-light.svg")} media="(prefers-color-scheme: light)"/>
-    <link rel="icon" type="image/svg+xml" href={usePath("favicon-dark.svg")} media="(prefers-color-scheme: dark)"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content={Astro.generator}>
-    <title>{title}</title>
+    <head>
+        <meta charset="utf-8" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href={usePath("favicon-light.svg")}
+            media="(prefers-color-scheme: light)"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href={usePath("favicon-dark.svg")}
+            media="(prefers-color-scheme: dark)"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body
+        class="min-h:100vh background-color:hsl(39|93%|99%/1)@light background-color:#49243E@dark color:#352621@light color:#DBAFA0@dark"
+    >
+        <NavigatorTop {...{ equivalentHref, language }} />
+        <Container>
+            <slot />
+        </Container>
+        <ThanksRead {language} show={showThanksRead} />
+        <NavigatorBottom {...{ language, equivalentHref }} />
+    </body>
+
     <script>
-        import "@master/css";
-    </script>
-</head>
-<body class="min-h:100vh background-color:hsl(39|93%|99%/1)@light background-color:#49243E@dark color:#352621@light color:#DBAFA0@dark">
-
-<NavigatorTop {...{equivalentHref, language}}/>
-<Container>
-    <slot/>
-</Container>
-<ThanksRead {language} show={showThanksRead}/>
-<NavigatorBottom {...{language, equivalentHref}}/>
-</body>
-
-<script>
-    const applyTheme = (mediaQueryList: MediaQueryList) => {
-        const htmlClassList = document.documentElement.classList;
-        const isDark = mediaQueryList.matches;
-        htmlClassList.toggle('light', !isDark);
-        htmlClassList.toggle('dark', isDark);
-    }
-    const mediaPrefersColorScheme = window.matchMedia("(prefers-color-scheme: dark)");
-    applyTheme(mediaPrefersColorScheme);
-
-    mediaPrefersColorScheme.addEventListener('change', () => {
+        const applyTheme = (mediaQueryList: MediaQueryList) => {
+            const htmlClassList = document.documentElement.classList;
+            const isDark = mediaQueryList.matches;
+            htmlClassList.toggle("light", !isDark);
+            htmlClassList.toggle("dark", isDark);
+        };
+        const mediaPrefersColorScheme = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+        );
         applyTheme(mediaPrefersColorScheme);
-    })
-</script>
 
+        mediaPrefersColorScheme.addEventListener("change", () => {
+            applyTheme(mediaPrefersColorScheme);
+        });
+    </script>
 </html>

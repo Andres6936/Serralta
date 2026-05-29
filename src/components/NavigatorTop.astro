@@ -1,20 +1,20 @@
 ---
-import {usePath} from "@/hooks/usePath";
+import { usePath } from "@/hooks/usePath";
 import Container from "@/components/Container.astro";
-const {language, equivalentHref} = Astro.props;
+const { language, equivalentHref } = Astro.props;
 
 const showEquivalentHref = !!equivalentHref;
 const languageOf = {
     en: {
-        books: 'Books',
-        notes: 'Notes',
-        lang: 'Español',
+        books: "Books",
+        notes: "Notes",
+        lang: "Español",
     },
     es: {
-        books: 'Libros',
-        notes: 'Notas',
-        lang: 'English',
-    }
+        books: "Libros",
+        notes: "Notas",
+        lang: "English",
+    },
 } as const;
 
 const urlOf = {
@@ -27,26 +27,40 @@ const urlOf = {
         home: usePath("/es"),
         books: usePath("/es/books"),
         notes: usePath("/NotasBiblicas"),
-    }
+    },
 } as const;
 ---
-<Container classOf="flex flex:col flex:row@sm justify-content:space-between align-items:center p:2rem mb:6rem@lg">
-    <a href={urlOf[language]['home']} class="text-decoration:none color:currentColor">
-        <h1 class="font-size:2rem font-weight:400">Bibleserralta.com</h1>
+
+<Container
+    classOf="flex flex:col flex:row@sm justify-content:space-between align-items:center p:2rem mb:6rem@lg"
+>
+    <a
+        href={urlOf[language]["home"]}
+        class="text-decoration:none color:currentColor"
+    >
+        <h1 class="font-size:1rem font-size:2rem@md font-weight:400">
+            Bibleserralta.com
+        </h1>
     </a>
 
     <nav class="flex flex:row gap:1rem">
-        <a href={urlOf[language]['books']}
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
-            {languageOf[language]['books']}
+        <a
+            href={urlOf[language]["books"]}
+            class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline"
+        >
+            {languageOf[language]["books"]}
         </a>
-        <a href={urlOf[language]['notes']}
-           class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline">
-            {languageOf[language]['notes']}
+        <a
+            href={urlOf[language]["notes"]}
+            class="color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline"
+        >
+            {languageOf[language]["notes"]}
         </a>
-        <a href={usePath(equivalentHref)}
-           class={`${showEquivalentHref ? 'flex' : 'hidden'} color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline`}>
-            {languageOf[language]['lang']}
+        <a
+            href={usePath(equivalentHref)}
+            class={`${showEquivalentHref ? "flex" : "hidden"} color:currentColor text-decoration-color:rgb(241,114,51) text-decoration:underline`}
+        >
+            {languageOf[language]["lang"]}
         </a>
     </nav>
 </Container>
