@@ -1,21 +1,11 @@
-// replace-imports.ts
+// replace-tags.ts
 import { readdirSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
-
-const NEW_IMPORTS = `import Layout from "@/layout/Layout.astro";
-import Title from "@/components/Title.astro";
-import DateOf from "@/components/DateOf.astro";
-import Cite from "@/components/Cite.astro";
-import Verse from "@/components/Verse.astro";
-import Tag from "@/components/Tag.astro";
-import Bold from "@/components/Bold.astro";
-import Content from "@/components/Content.astro";
-import Paragraph from "@/components/Paragraph.astro";`;
 
 const dir = Bun.argv[2];
 if (!dir) {
   console.error(
-    "❌ Debes indicar un directorio: bun run replace-imports.ts ./ruta",
+    "❌ Debes indicar un directorio: bun run replace-tags.ts ./ruta",
   );
   process.exit(1);
 }
@@ -24,7 +14,13 @@ if (!statSync(dir).isDirectory()) {
   process.exit(1);
 }
 
-// Obtener todos los archivos .astro recursivamente
+// Mapeo de etiquetas a reemplazar (en minúsculas) -> nueva etiqueta
+const TAG_MAP: Record<string, string> = {
+  p: "Paragraph",
+  strong: "Bold",
+};
+
+// Obtener recursivamente todos los archivos .astro
 function getAstroFiles(root: string): string[] {
   const entries = readdirSync(root, { withFileTypes: true });
   return entries.flatMap((entry) => {
@@ -38,55 +34,41 @@ function getAstroFiles(root: string): string[] {
 const astroFiles = getAstroFiles(dir);
 console.log(`🔍 Encontrados ${astroFiles.length} archivos .astro.`);
 
-let replacedCount = 0;
+let modifiedCount = 0;
 
 for (const filePath of astroFiles) {
-  const original = await Bun.file(filePath).text();
-  const lines = original.split("\n");
+  let content = await Bun.file(filePath).text();
+  let modified = false;
 
-  // Encontrar la primera línea que contenga "<Layout" (ignorando espacios iniciales)
-  const layoutIndex = lines.findIndex((line) =>
-    line.trimStart().startsWith("<Layout"),
-  );
+  for (const [oldTag, newTag] of Object.entries(TAG_MAP)) {
+    // Expresión regular para etiquetas de apertura con o sin atributos (incluye auto-cierre)
+    const openRegex = new RegExp(`<(${oldTag})(\\s[^>]*)?(\\/)?>`, "gi");
+    const newOpen = content.replace(
+      openRegex,
+      (match, tagName, attributes, selfClose) => {
+        modified = true;
+        if (selfClose) {
+          return `<${newTag}${attributes ?? ""} />`;
+        }
+        return `<${newTag}${attributes ?? ""}>`;
+      },
+    );
 
-  // Si no hay <Layout, procesamos el archivo entero (comportamiento anterior)
-  const headerEnd = layoutIndex === -1 ? lines.length : layoutIndex;
-  const headerLines = lines.slice(0, headerEnd);
-  const bodyLines = lines.slice(headerEnd);
+    // Expresión regular para etiquetas de cierre
+    const closeRegex = new RegExp(`<\\/(${oldTag})\\s*>`, "gi");
+    const newClose = newOpen.replace(closeRegex, (match) => {
+      modified = true;
+      return `</${newTag}>`;
+    });
 
-  // Localizar líneas de import dentro del header
-  const importIndices: number[] = [];
-  headerLines.forEach((line, i) => {
-    if (line.trimStart().startsWith("import ")) importIndices.push(i);
-  });
+    content = newClose;
+  }
 
-  // Si no hay imports, siguiente archivo
-  if (importIndices.length === 0) continue;
-
-  // Obtener la indentación de la primera línea de import
-  const firstImportLine = headerLines[importIndices[0]];
-  const indentation = firstImportLine.match(/^(\s*)/)?.[1] ?? "";
-  const indentedNewImports = NEW_IMPORTS.split("\n")
-    .map((l) => indentation + l)
-    .join("\n");
-
-  // Reconstruir el header: antes del primer import + nuevos imports + después del último import
-  const beforeImports = headerLines.slice(0, importIndices[0]);
-  const afterImports = headerLines.slice(
-    importIndices[importIndices.length - 1] + 1,
-  );
-  const newHeader = [
-    ...beforeImports,
-    indentedNewImports,
-    ...afterImports,
-  ].join("\n");
-
-  // Unir con el cuerpo (líneas desde <Layout en adelante, o el resto del archivo)
-  const newContent = [newHeader, bodyLines.join("\n")].join("\n");
-
-  await Bun.write(filePath, newContent);
-  console.log(`✅ Reemplazado: ${filePath}`);
-  replacedCount++;
+  if (modified) {
+    await Bun.write(filePath, content);
+    console.log(`✅ Modificado: ${filePath}`);
+    modifiedCount++;
+  }
 }
 
-console.log(`🎉 Hecho. Se modificaron ${replacedCount} archivos.`);
+console.log(`🎉 Hecho. Se modificaron ${modifiedCount} archivos.`);
