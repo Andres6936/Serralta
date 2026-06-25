@@ -1,11 +1,11 @@
-// replace-tags.ts
+// replace-section-to-container.ts
 import { readdirSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
 
 const dir = Bun.argv[2];
 if (!dir) {
   console.error(
-    "❌ Debes indicar un directorio: bun run replace-tags.ts ./ruta",
+    "❌ Indica un directorio: bun run replace-section-to-container.ts ./ruta",
   );
   process.exit(1);
 }
@@ -14,13 +14,18 @@ if (!statSync(dir).isDirectory()) {
   process.exit(1);
 }
 
-// Mapeo de etiquetas a reemplazar (en minúsculas) -> nueva etiqueta
-const TAG_MAP: Record<string, string> = {
-  p: "Paragraph",
-  strong: "Bold",
-};
+// Cadena exacta de la etiqueta de apertura (sin comillas de escape)
+const OPEN_TAG = `<section>`;
+// Expresión regular para capturar TODO el bloque, incluyendo saltos de línea (dotAll: true)
+const BLOCK_REGEX = new RegExp(
+  escapeRegExp(OPEN_TAG) + `(.*?)<\\/section>`,
+  "gis", // g = global, i = ignorar mayúsculas/minúsculas, s = dotAll (el punto cubre \n)
+);
 
-// Obtener recursivamente todos los archivos .astro
+function escapeRegExp(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function getAstroFiles(root: string): string[] {
   const entries = readdirSync(root, { withFileTypes: true });
   return entries.flatMap((entry) => {
@@ -34,41 +39,20 @@ function getAstroFiles(root: string): string[] {
 const astroFiles = getAstroFiles(dir);
 console.log(`🔍 Encontrados ${astroFiles.length} archivos .astro.`);
 
-let modifiedCount = 0;
+let replacedCount = 0;
 
 for (const filePath of astroFiles) {
   let content = await Bun.file(filePath).text();
-  let modified = false;
+  const original = content;
 
-  for (const [oldTag, newTag] of Object.entries(TAG_MAP)) {
-    // Expresión regular para etiquetas de apertura con o sin atributos (incluye auto-cierre)
-    const openRegex = new RegExp(`<(${oldTag})(\\s[^>]*)?(\\/)?>`, "gi");
-    const newOpen = content.replace(
-      openRegex,
-      (match, tagName, attributes, selfClose) => {
-        modified = true;
-        if (selfClose) {
-          return `<${newTag}${attributes ?? ""} />`;
-        }
-        return `<${newTag}${attributes ?? ""}>`;
-      },
-    );
+  // Reemplazar cada bloque <section ...>contenido</section> por <Content>contenido</Content>
+  content = content.replace(BLOCK_REGEX, "<Content>$1</Content>");
 
-    // Expresión regular para etiquetas de cierre
-    const closeRegex = new RegExp(`<\\/(${oldTag})\\s*>`, "gi");
-    const newClose = newOpen.replace(closeRegex, (match) => {
-      modified = true;
-      return `</${newTag}>`;
-    });
-
-    content = newClose;
-  }
-
-  if (modified) {
+  if (content !== original) {
     await Bun.write(filePath, content);
-    console.log(`✅ Modificado: ${filePath}`);
-    modifiedCount++;
+    console.log(`✅ Reemplazado: ${filePath}`);
+    replacedCount++;
   }
 }
 
-console.log(`🎉 Hecho. Se modificaron ${modifiedCount} archivos.`);
+console.log(`🎉 Hecho. Se modificaron ${replacedCount} archivos.`);
