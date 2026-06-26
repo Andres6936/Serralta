@@ -1,14 +1,13 @@
-// insert-tag-by-filename.ts
+// extract-title-simple.ts
 import { readdirSync } from "node:fs";
 import { join, basename, extname } from "node:path";
 
 const dir = Bun.argv[2];
 if (!dir) {
-  console.error("❌ Uso: bun run insert-tag-by-filename.ts ./ruta");
+  console.error("❌ Uso: bun run extract-title-simple.ts ./carpeta");
   process.exit(1);
 }
 
-// Obtener archivos .astro recursivamente
 function getAstroFiles(root: string): string[] {
   const entries = readdirSync(root, { withFileTypes: true });
   return entries.flatMap((entry) => {
@@ -19,52 +18,57 @@ function getAstroFiles(root: string): string[] {
   });
 }
 
-const astroFiles = getAstroFiles(dir);
-console.log(`🔍 Encontrados ${astroFiles.length} archivos .astro.\n`);
+const files = getAstroFiles(dir);
+console.log(`🔍 Encontrados ${files.length} archivos .astro.\n`);
 
 let modified = 0;
 
-for (const filePath of astroFiles) {
-  const name = basename(filePath, ".astro");
-  // Extraer número al inicio del nombre (antes del primer '_')
-  const match = name.match(/^(\d+)_/);
-  if (!match) {
-    console.log(`⏭️  Omitido (sin número): ${name}`);
-    continue;
-  }
-
-  const num = parseInt(match[1], 10); // "01" -> 1, "100" -> 100
-  const tag = `<Tag>#${num}</Tag>`;
-
+for (const filePath of files) {
   let content = await Bun.file(filePath).text();
 
-  // Buscar la primera línea que contenga "<Content" (apertura)
-  const lines = content.split("\n");
-  const contentIndex = lines.findIndex((line) => /^\s*<Content/.test(line));
-
-  if (contentIndex === -1) {
-    console.log(`⚠️  No se encontró <Content> en: ${name}, se omite.`);
+  // Buscar bloque <Content ...> ... </Content>
+  const contentMatch = content.match(/<Content[^>]*>([\s\S]*?)<\/Content>/i);
+  if (!contentMatch) {
+    console.log(`⚠️  Sin <Content> en: ${basename(filePath)}`);
     continue;
   }
 
-  // Obtener la indentación de esa línea
-  const indentMatch = lines[contentIndex].match(/^(\s*)/);
-  const indent = indentMatch ? indentMatch[1] : "";
-
-  const tagLine = indent + tag;
-
-  // Si la línea anterior ya es exactamente este Tag, no duplicar
-  if (contentIndex > 0 && lines[contentIndex - 1] === tagLine) {
-    console.log(`⏩  Ya tiene el Tag: ${name}`);
+  const inner = contentMatch[1];
+  // Buscar primer <Paragraph> que contiene <Bold> (admite atributos)
+  const paraMatch = inner.match(
+    /<Paragraph[^>]*>\s*<Bold[^>]*>(.*?)<\/Bold>\s*<\/Paragraph>/is,
+  );
+  if (!paraMatch) {
+    console.log(`⏭️  Sin título en: ${basename(filePath)}`);
     continue;
   }
 
-  // Insertar el tag justo antes de la línea de <Content>
-  lines.splice(contentIndex, 0, tagLine);
-  const newContent = lines.join("\n");
+  const fullParagraph = paraMatch[0];
+  const titleText = paraMatch[1].trim();
+  if (!titleText) {
+    console.log(`⚠️  Título vacío en: ${basename(filePath)}`);
+    continue;
+  }
 
-  await Bun.write(filePath, newContent);
-  console.log(`✅ Insertado en: ${name}`);
+  // Eliminar ese párrafo del interior de <Content>
+  const newInner = inner.replace(fullParagraph, "");
+  content = content.replace(inner, newInner);
+
+  // ── Insertar <Title> antes de <Tag> ──
+  const tagLineRegex = /(\s*)<Tag>#\d+<\/Tag>/;
+  const tagMatch = content.match(tagLineRegex);
+  if (!tagMatch) {
+    console.log(`⚠️  No se encontró <Tag> en: ${basename(filePath)}`);
+    continue;
+  }
+
+  const indent = tagMatch[1]; // espacios antes de <Tag>
+  const titleLine = `${indent}<Title>${titleText}</Title>`;
+  // Insertar la nueva línea justo antes de la línea del <Tag>
+  content = content.replace(tagLineRegex, `${titleLine}\n${tagMatch[0]}`);
+
+  await Bun.write(filePath, content);
+  console.log(`✅ Título insertado en: ${basename(filePath)}`);
   modified++;
 }
 
